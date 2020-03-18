@@ -1,0 +1,35 @@
+<table class="table stock-table" >
+        
+        <tr>
+               
+			<th scope="col" >DATE</th>
+			<th scope="col" >SERIES</th>
+			<th scope="col" >OPEN</th>
+			<th scope="col" >HIGH</th>
+			<th scope="col" >LOW</th>
+			<th scope="col" >CLOSE</th>
+			<th scope="col" >LAST</th>
+			<th scope="col" >PREVCLOSE</th>
+			<th scope="col" >TOTTRDQTY</th>
+
+		</tr>
+
+        {% for k,v in stocks.items %}
+
+			<tr>
+				<td >{{v.TIMESTAMP}}</td>
+				<td >{{v.SERIES}}</td>
+				<td >{{v.OPEN}}</td>
+				<td >{{v.HIGH}}</td>
+				<td >{{v.LOW}}</td>
+				<td >{{v.CLOSE}}</td>
+				<td >{{v.LAST}}</td>
+				<td >{{v.PREVCLOSE}}</td>
+				<td >{{v.TOTTRDQTY}}</td>
+
+			</tr>
+          
+       {% endfor %} 
+     
+                        
+</table>

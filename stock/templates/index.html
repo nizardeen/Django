@@ -2,95 +2,12 @@
 <html>
 <head>
 	<title>Stock Form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<style type="text/css">
-
-		.lds-roller div {
-		  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-		  transform-origin: 40px 40px;
-		}
-		.lds-roller div:after {
-		  content: " ";
-		  display: block;
-		  position: absolute;
-		  width: 7px;
-		  height: 7px;
-		  border-radius: 50%;
-		  background: red;
-		  margin: -4px 0 0 -4px;
-		}
-		.lds-roller div:nth-child(1) {
-		  animation-delay: -0.036s;
-		}
-		.lds-roller div:nth-child(1):after {
-		  top: 63px;
-		  left: 63px;
-		}
-		.lds-roller div:nth-child(2) {
-		  animation-delay: -0.072s;
-		}
-		.lds-roller div:nth-child(2):after {
-		  top: 68px;
-		  left: 56px;
-		}
-		.lds-roller div:nth-child(3) {
-		  animation-delay: -0.108s;
-		}
-		.lds-roller div:nth-child(3):after {
-		  top: 71px;
-		  left: 48px;
-		}
-		.lds-roller div:nth-child(4) {
-		  animation-delay: -0.144s;
-		}
-		.lds-roller div:nth-child(4):after {
-		  top: 72px;
-		  left: 40px;
-		}
-		.lds-roller div:nth-child(5) {
-		  animation-delay: -0.18s;
-		}
-		.lds-roller div:nth-child(5):after {
-		  top: 71px;
-		  left: 32px;
-		}
-		.lds-roller div:nth-child(6) {
-		  animation-delay: -0.216s;
-		}
-		.lds-roller div:nth-child(6):after {
-		  top: 68px;
-		  left: 24px;
-		}
-		.lds-roller div:nth-child(7) {
-		  animation-delay: -0.252s;
-		}
-		.lds-roller div:nth-child(7):after {
-		  top: 63px;
-		  left: 17px;
-		}
-		.lds-roller div:nth-child(8) {
-		  animation-delay: -0.288s;
-		}
-		.lds-roller div:nth-child(8):after {
-		  top: 56px;
-		  left: 12px;
-		}
-		@keyframes lds-roller {
-		  0% {
-		    transform: rotate(0deg);
-		  }
-		  100% {
-		    transform: rotate(360deg);
-		  }
-		}
-
-
-	    /**.hidden {
-	      display: none !important;
-	    }*/
 
 	    div.loading{
 	      position: absolute;
@@ -101,70 +18,590 @@
 	      background-color: rgba(16, 16, 16, 0.5);
 	    }
 
+
+		.loader {
+		  padding: 10px;
+		  position: absolute;
+		  width: 40%;
+		  height: 100px;
+		  top: 50%;
+	  	  left:30%;
+	  	  right: 50%;
+	      background-color: #EA4961;
+		}
+		.loader__bar {
+		  position: absolute;
+		  bottom: 0;
+		  width: 10px;
+		  height: 50%;
+		  background: #fff;
+		  -webkit-transform-origin: center bottom;
+		          transform-origin: center bottom;
+		  box-shadow: 1px 1px 0 rgba(16, 16, 16, 0.5);
+		}
+		.loader__bar:nth-child(1) {
+		  left: 0px;
+		  -webkit-transform: scale(1, 0.2);
+		          transform: scale(1, 0.2);
+		  -webkit-animation: barUp1 4s infinite;
+		          animation: barUp1 4s infinite;
+		}
+		.loader__bar:nth-child(2) {
+		  left: 15px;
+		  -webkit-transform: scale(1, 0.4);
+		          transform: scale(1, 0.4);
+		  -webkit-animation: barUp2 4s infinite;
+		          animation: barUp2 4s infinite;
+		}
+		.loader__bar:nth-child(3) {
+		  left: 30px;
+		  -webkit-transform: scale(1, 0.6);
+		          transform: scale(1, 0.6);
+		  -webkit-animation: barUp3 4s infinite;
+		          animation: barUp3 4s infinite;
+		}
+		.loader__bar:nth-child(4) {
+		  left: 45px;
+		  -webkit-transform: scale(1, 0.8);
+		          transform: scale(1, 0.8);
+		  -webkit-animation: barUp4 4s infinite;
+		          animation: barUp4 4s infinite;
+		}
+		.loader__bar:nth-child(5) {
+		  left: 60px;
+		  -webkit-transform: scale(1, 1);
+		          transform: scale(1, 1);
+		  -webkit-animation: barUp5 4s infinite;
+		          animation: barUp5 4s infinite;
+		}
+		.loader__ball {
+		  position: absolute;
+		  bottom: 10px;
+		  left: 0;
+		  width: 10px;
+		  height: 10px;
+		  background: #fff;
+		  border-radius: 50%;
+		  -webkit-animation: ball 4s infinite;
+		          animation: ball 4s infinite;
+		}
+
+		@-webkit-keyframes ball {
+		  0% {
+		    -webkit-transform: translate(0, 0);
+		            transform: translate(0, 0);
+		  }
+		  5% {
+		    -webkit-transform: translate(8px, -14px);
+		            transform: translate(8px, -14px);
+		  }
+		  10% {
+		    -webkit-transform: translate(15px, -10px);
+		            transform: translate(15px, -10px);
+		  }
+		  17% {
+		    -webkit-transform: translate(23px, -24px);
+		            transform: translate(23px, -24px);
+		  }
+		  20% {
+		    -webkit-transform: translate(30px, -20px);
+		            transform: translate(30px, -20px);
+		  }
+		  27% {
+		    -webkit-transform: translate(38px, -34px);
+		            transform: translate(38px, -34px);
+		  }
+		  30% {
+		    -webkit-transform: translate(45px, -30px);
+		            transform: translate(45px, -30px);
+		  }
+		  37% {
+		    -webkit-transform: translate(53px, -44px);
+		            transform: translate(53px, -44px);
+		  }
+		  40% {
+		    -webkit-transform: translate(60px, -40px);
+		            transform: translate(60px, -40px);
+		  }
+		  50% {
+		    -webkit-transform: translate(60px, 0);
+		            transform: translate(60px, 0);
+		  }
+		  57% {
+		    -webkit-transform: translate(53px, -14px);
+		            transform: translate(53px, -14px);
+		  }
+		  60% {
+		    -webkit-transform: translate(45px, -10px);
+		            transform: translate(45px, -10px);
+		  }
+		  67% {
+		    -webkit-transform: translate(37px, -24px);
+		            transform: translate(37px, -24px);
+		  }
+		  70% {
+		    -webkit-transform: translate(30px, -20px);
+		            transform: translate(30px, -20px);
+		  }
+		  77% {
+		    -webkit-transform: translate(22px, -34px);
+		            transform: translate(22px, -34px);
+		  }
+		  80% {
+		    -webkit-transform: translate(15px, -30px);
+		            transform: translate(15px, -30px);
+		  }
+		  87% {
+		    -webkit-transform: translate(7px, -44px);
+		            transform: translate(7px, -44px);
+		  }
+		  90% {
+		    -webkit-transform: translate(0, -40px);
+		            transform: translate(0, -40px);
+		  }
+		  100% {
+		    -webkit-transform: translate(0, 0);
+		            transform: translate(0, 0);
+		  }
+		}
+
+		@keyframes ball {
+		  0% {
+		    -webkit-transform: translate(0, 0);
+		            transform: translate(0, 0);
+		  }
+		  5% {
+		    -webkit-transform: translate(8px, -14px);
+		            transform: translate(8px, -14px);
+		  }
+		  10% {
+		    -webkit-transform: translate(15px, -10px);
+		            transform: translate(15px, -10px);
+		  }
+		  17% {
+		    -webkit-transform: translate(23px, -24px);
+		            transform: translate(23px, -24px);
+		  }
+		  20% {
+		    -webkit-transform: translate(30px, -20px);
+		            transform: translate(30px, -20px);
+		  }
+		  27% {
+		    -webkit-transform: translate(38px, -34px);
+		            transform: translate(38px, -34px);
+		  }
+		  30% {
+		    -webkit-transform: translate(45px, -30px);
+		            transform: translate(45px, -30px);
+		  }
+		  37% {
+		    -webkit-transform: translate(53px, -44px);
+		            transform: translate(53px, -44px);
+		  }
+		  40% {
+		    -webkit-transform: translate(60px, -40px);
+		            transform: translate(60px, -40px);
+		  }
+		  50% {
+		    -webkit-transform: translate(60px, 0);
+		            transform: translate(60px, 0);
+		  }
+		  57% {
+		    -webkit-transform: translate(53px, -14px);
+		            transform: translate(53px, -14px);
+		  }
+		  60% {
+		    -webkit-transform: translate(45px, -10px);
+		            transform: translate(45px, -10px);
+		  }
+		  67% {
+		    -webkit-transform: translate(37px, -24px);
+		            transform: translate(37px, -24px);
+		  }
+		  70% {
+		    -webkit-transform: translate(30px, -20px);
+		            transform: translate(30px, -20px);
+		  }
+		  77% {
+		    -webkit-transform: translate(22px, -34px);
+		            transform: translate(22px, -34px);
+		  }
+		  80% {
+		    -webkit-transform: translate(15px, -30px);
+		            transform: translate(15px, -30px);
+		  }
+		  87% {
+		    -webkit-transform: translate(7px, -44px);
+		            transform: translate(7px, -44px);
+		  }
+		  90% {
+		    -webkit-transform: translate(0, -40px);
+		            transform: translate(0, -40px);
+		  }
+		  100% {
+		    -webkit-transform: translate(0, 0);
+		            transform: translate(0, 0);
+		  }
+		}
+		@-webkit-keyframes barUp1 {
+		  0% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		}
+		@keyframes barUp1 {
+		  0% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		}
+		@-webkit-keyframes barUp2 {
+		  0% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		}
+		@keyframes barUp2 {
+		  0% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		}
+		@-webkit-keyframes barUp3 {
+		  0% {
+		    -webkit-transform: scale(1, 0.6);
+		            transform: scale(1, 0.6);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.6);
+		            transform: scale(1, 0.6);
+		  }
+		}
+		@keyframes barUp3 {
+		  0% {
+		    -webkit-transform: scale(1, 0.6);
+		            transform: scale(1, 0.6);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.6);
+		            transform: scale(1, 0.6);
+		  }
+		}
+		@-webkit-keyframes barUp4 {
+		  0% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		}
+		@keyframes barUp4 {
+		  0% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.4);
+		            transform: scale(1, 0.4);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 0.8);
+		            transform: scale(1, 0.8);
+		  }
+		}
+		@-webkit-keyframes barUp5 {
+		  0% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		}
+		@keyframes barUp5 {
+		  0% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  40% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		  50% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  90% {
+		    -webkit-transform: scale(1, 0.2);
+		            transform: scale(1, 0.2);
+		  }
+		  100% {
+		    -webkit-transform: scale(1, 1);
+		            transform: scale(1, 1);
+		  }
+		}
+
+		.d-none{
+			display: none;
+		}
+
+
 	</style>
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
 
 </head>
 <body>
 
-	<div class="voiceloading"></div>
+	<div class="loading d-none"></div>
+	
 
-	<form method="" id="additems" data-parsley-validate novalidate>
-        <div class="row">
-            <div class="col-8 col-md-4 offset-md-3 form-group mt-2 text-center">
-                <label >Category</label>
-                <select class="form-control" id="items-category" required>
+		<h2 style="text-align: center;">Stock Market Data</h2>
+		<div class="row text-left" style="margin-left: 10px;">
+			<p>1. Select the Desire Date to start</p>
+			<p>2. Select the Number of Days earlier you need to check the stock from the selected Date</p>
+			<p style="color:red;">Note: While fetching the stocks may take time..please wait</p>
+			<p>3. Once completed choose the Company from the dropdown to check the stocks</p>
+		</div>
+        <div class="row text-center" style="margin-top: 20px;text-align: center;margin: 20px;">
+        	<div class="col-md-3 col-sm-4 form-group text-center">
+        		<label >Date</label>
+        		<input class="form-control" type="text" id="datepicker">
+        	</div>
+
+        	<div class="col-md-3 col-sm-4 form-group text-center">
+        		<label >Days</label>
+        		<input class="form-control days" list="days" name="days" onfocusout="getSymbols()">
+				<datalist id="days">
+					<option value="1">
+					<option value="5">
+					<option value="7">
+					<option value="15">
+					<option value="20">
+					<option value="30">
+				</datalist>
+        	</div>
+
+            <div class="col-md-3 col-sm-4 form-group text-center">
+                <label >Companies</label>
+                <select class="form-control" id="symbols" onchange="getData()" required>
                     <option value="">--Select Category--</option>
-                    {% for items in items %}
-	                    {{items}}
-	                {% endfor %}
+                    
                 </select>
             </div>
-            <div class="col-4 form-group selectitmes mt-4">
-                    <button type="submit" value="Add" name="Add" id="prod_add" class="mt-1 col-sm-4 form-control btn btn-primary" >Add</button>
-            </div>
+           
         </div>
 
 
-	</form>
+	
 
-	<table class="table" >
-                          
-        <tr>
-               
-			<th scope="col" >Product Name</th>
-			<th scope="col" >Category</th>
-			<th scope="col" >Sales Price</th>
-			<th scope="col" >Purchase Price</th>
-			<th scope="col" >tax</th>
-			<th scope="col" >UOM</th>
-			<th scope="col" >Status</th>
+	{% include 'data_table.html' %}
 
-		</tr>
-          
-            
-        {% for k,v in data.items %}
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-			<tr>
-				<td >{{v.product_name}}</td>
-				<td >{{v.prod_category}}</td>
-				<td >{{v.price}}</td>
-				<td >{{v.purchasePrice}}</td>
-				<td >{{v.tax}}</td>
-				<td >{{v.category}}</td>
-				<td >{{v.status}}</td>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
-			</tr>
-          
-       {% endfor %} 
-                        
-    </table>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-    	 $('.voiceloading').append('<div class="col-12 loading">\
-            <div class="col-12 text-center lds-roller"><div></div><div></div><div></div><div></div><div></div><div>\
-        </div>');
+    		
+    		var maximumDate;
+    		if(new Date(Date.now()).getHours() >= 18 && new Date(Date.now()).getMinutes() > 30)
+    		{
+    			maximumDate = new Date();
+    		}
+    		else
+    		{
+    			maximumDate = new Date(new Date().setDate(new Date().getDate()-1))
+    		}
+    		console.log(maximumDate);
+
+    		$(document).ready(function() {
+    			$( "#datepicker" ).datepicker({ dateFormat: 'dd-M-yy',maxDate: maximumDate });
+
+		    	$("#datepicker").datepicker().datepicker("setDate", new Date());
+    		});
+		   
+
+		 //    $("#datepicker").datepicker().on("changeDate", function(e) {
+			//    console.log("Date changed: ", e.date);
+			//    $('.days').val('');
+			//    $('#symbols option')[1].checked = true;
+			// });
+
+
+			$("#datepicker").datepicker({
+				dateFormat: 'dd-M-yy',
+				maxDate: maximumDate,
+			    onSelect: function(dateText) {
+			        $('.days').val('');
+			   		$('#symbols')[0].selectedIndex=0;
+			   	
+			   		// $('.stock-table > tbody').empty();
+			   		 $(".stock-table").find("tr:gt(0)").remove();
+			    }
+			});
+
+    	// $('.voiceloading').append('<div class="col-12 loading">\
+     //        <div class="col-12 text-center lds-roller"><div></div><div></div><div></div><div></div><div></div><div>\
+     //    </div>');
+
+
+
+    	function getSymbols()
+    	{
+    		var date = $('#datepicker').val();
+    		var days = $('.days').val();
+    		console.log("datetime : "+date+" "+days);
+
+    		$('.loading').removeClass('d-none');
+
+	    	$('.loading').append('<div class="col-12 loader"><div class="loader__bar" style="margin-left:40%;"></div>\
+	  <div class="loader__bar" style="margin-left:40%;"></div>\
+	  <div class="loader__bar" style="margin-left:40%;"></div>\
+	  <div class="loader__bar" style="margin-left:40%;"></div>\
+	  <div class="loader__bar" style="margin-left:40%;"></div>\
+	  <div class="loader__ball" style="margin-left:40%;"></div><div class="text-center"><p style="font-size:22px;color:white">Please wait we are building the stocks</p></div></div>')
+
+
+    		var formdata = new FormData();
+    		formdata.append("date",date);
+    		formdata.append("days",days);
+    		fetch("{% url 'getStocksData' %}",{
+    			method:'POST',
+    			body:formdata,
+    		}).then((response) => response.json())
+			.then((data) => {
+			  console.log('Success:', data);
+			  console.log(data.symbols.length)
+			 
+			  	$('.loading').addClass('d-none');
+
+			  	$(data.symbols).each(function( index ) {
+			  		$('#symbols').append($("<option></option>").attr("value",data.symbols[index]).text(data.symbols[index])); 
+				});
+			  
+
+			})
+			.catch((error) => {
+			  console.error('Error:', error);
+			});
+    	}
+
+    	function getData()
+    	{
+
+    		var symbol_name = $('#symbols').val();
+
+    		$('.stock-table').html('').load(
+		        "{% url 'getSymbolData' %}",{symbol:symbol_name}
+		    ); 
+
+    	}
+
     </script>
     
 
