@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stock Form</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style type="text/css">
+
+		.lds-roller div {
+		  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+		  transform-origin: 40px 40px;
+		}
+		.lds-roller div:after {
+		  content: " ";
+		  display: block;
+		  position: absolute;
+		  width: 7px;
+		  height: 7px;
+		  border-radius: 50%;
+		  background: red;
+		  margin: -4px 0 0 -4px;
+		}
+		.lds-roller div:nth-child(1) {
+		  animation-delay: -0.036s;
+		}
+		.lds-roller div:nth-child(1):after {
+		  top: 63px;
+		  left: 63px;
+		}
+		.lds-roller div:nth-child(2) {
+		  animation-delay: -0.072s;
+		}
+		.lds-roller div:nth-child(2):after {
+		  top: 68px;
+		  left: 56px;
+		}
+		.lds-roller div:nth-child(3) {
+		  animation-delay: -0.108s;
+		}
+		.lds-roller div:nth-child(3):after {
+		  top: 71px;
+		  left: 48px;
+		}
+		.lds-roller div:nth-child(4) {
+		  animation-delay: -0.144s;
+		}
+		.lds-roller div:nth-child(4):after {
+		  top: 72px;
+		  left: 40px;
+		}
+		.lds-roller div:nth-child(5) {
+		  animation-delay: -0.18s;
+		}
+		.lds-roller div:nth-child(5):after {
+		  top: 71px;
+		  left: 32px;
+		}
+		.lds-roller div:nth-child(6) {
+		  animation-delay: -0.216s;
+		}
+		.lds-roller div:nth-child(6):after {
+		  top: 68px;
+		  left: 24px;
+		}
+		.lds-roller div:nth-child(7) {
+		  animation-delay: -0.252s;
+		}
+		.lds-roller div:nth-child(7):after {
+		  top: 63px;
+		  left: 17px;
+		}
+		.lds-roller div:nth-child(8) {
+		  animation-delay: -0.288s;
+		}
+		.lds-roller div:nth-child(8):after {
+		  top: 56px;
+		  left: 12px;
+		}
+		@keyframes lds-roller {
+		  0% {
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    transform: rotate(360deg);
+		  }
+		}
+
+
+	    /**.hidden {
+	      display: none !important;
+	    }*/
+
+	    div.loading{
+	      position: absolute;
+	      top: 0;
+	      left: 0;
+	      width: 100%;
+	      height: 100%;
+	      background-color: rgba(16, 16, 16, 0.5);
+	    }
+
+	</style>
+
+</head>
+<body>
+
+	<div class="voiceloading"></div>
+
+	<form method="" id="additems" data-parsley-validate novalidate>
+        <div class="row">
+            <div class="col-8 col-md-4 offset-md-3 form-group mt-2 text-center">
+                <label >Category</label>
+                <select class="form-control" id="items-category" required>
+                    <option value="">--Select Category--</option>
+                    {% for items in items %}
+	                    {{items}}
+	                {% endfor %}
+                </select>
+            </div>
+            <div class="col-4 form-group selectitmes mt-4">
+                    <button type="submit" value="Add" name="Add" id="prod_add" class="mt-1 col-sm-4 form-control btn btn-primary" >Add</button>
+            </div>
+        </div>
+
+
+	</form>
+
+	<table class="table" >
+                          
+        <tr>
+               
+			<th scope="col" >Product Name</th>
+			<th scope="col" >Category</th>
+			<th scope="col" >Sales Price</th>
+			<th scope="col" >Purchase Price</th>
+			<th scope="col" >tax</th>
+			<th scope="col" >UOM</th>
+			<th scope="col" >Status</th>
+
+		</tr>
+          
+            
+        {% for k,v in data.items %}
+
+			<tr>
+				<td >{{v.product_name}}</td>
+				<td >{{v.prod_category}}</td>
+				<td >{{v.price}}</td>
+				<td >{{v.purchasePrice}}</td>
+				<td >{{v.tax}}</td>
+				<td >{{v.category}}</td>
+				<td >{{v.status}}</td>
+
+			</tr>
+          
+       {% endfor %} 
+                        
+    </table>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    	 $('.voiceloading').append('<div class="col-12 loading">\
+            <div class="col-12 text-center lds-roller"><div></div><div></div><div></div><div></div><div></div><div>\
+        </div>');
+    </script>
+    
+
+</body>
+</html>
