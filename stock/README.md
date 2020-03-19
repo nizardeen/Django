@@ -11,6 +11,7 @@ trade/stock.py --> file contains a Stocks() class which includes of following fu
                                          stock unavailable dates except weekend holidays, this dates are made for the UI for the user
 
 
+
 trade/views.py --> Its a django function based api views file 
    
    index() --> for loading a index.html front-end view
