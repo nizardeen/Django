@@ -1,5 +1,6 @@
 A Django App to check the Previous stocks for all the available symbols which comes under nseindia.
 
+
 trade/stock.py --> file contains a Stocks() class which includes of following functions:
    
    checkTime(date) --> for checking the stock data updating to online time, the normally the files is uploaded on every weekdays on 18:30 P.M,
@@ -8,6 +9,7 @@ trade/stock.py --> file contains a Stocks() class which includes of following fu
    get_prev_days_stocks(num_of_days) --> this function is a main key role player for this app, this gets the parameter num.of days
                                          and gets the previous num_of_days all the stock listing by returning stocks(pandas dataframes) and the
                                          stock unavailable dates except weekend holidays, this dates are made for the UI for the user
+
 
 trade/views.py --> Its a django function based api views file 
    
