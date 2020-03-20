@@ -6,13 +6,13 @@ from datetime import datetime
 import traceback
 from django.http import JsonResponse
 from . import stock
-
+import pandas as pd
 global_stocks = None
 
 
 @csrf_exempt
 def index(request):
-
+	request.session['data'] = ""
 	return render_to_response('index.html',{})
 
 
@@ -27,14 +27,15 @@ def getStocksData(request):
 	try:
 		date = requestData.get('date',datetime.strftime(datetime.now(), '%d-%b-%Y'))
 		days = requestData.get('days',5)
-		
+
 		dates_opt = datetime.strptime(date.upper(), '%d-%b-%Y')
 		stock_obj = stock.Stocks(dates_opt)
 		stocks,unavailable_dates = stock_obj.get_prev_days_stocks(int(days))
 
 		global global_stocks
 		global_stocks = stocks
-
+		request.session['data'] = stocks.to_json(orient='split')
+		print(request.session['data'],"get data stocks")
 		symbol_list = stocks.SYMBOL.unique().tolist()
 
 	except Exception as e:
@@ -54,9 +55,11 @@ def getSymbolData(request):
 	    requestData = request.POST
 
 	symbol = requestData.get('symbol',None)
+	global global_stocks
+	print(request.session.keys())
+	#print(request.session['data'],"Data available")
+	#global_stocks = pd.read_json(request.session['data'],orient='split')
 	data_stocks = global_stocks.loc[global_stocks.SYMBOL == symbol].reset_index()
-
-
 	symbol_stocks = dict()
 	for index, rows in data_stocks.iterrows():
 		symbol_stocks.update({int(index)+1:{"SYMBOL":rows.SYMBOL,"SERIES":rows.SERIES,"OPEN":rows.OPEN,"HIGH":rows.HIGH,
