@@ -1,0 +1,374 @@
+{% load socialaccount %}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stock Form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+	<link href="https://parsleyjs.org/src/parsley.css" rel="stylesheet" />
+
+	<!------ Include the above in your HEAD tag ---------->
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+	<style type="text/css">
+
+	  	.divider-text {
+		    position: relative;
+		    text-align: center;
+		    margin-top: 15px;
+		    margin-bottom: 15px;
+		}
+		.divider-text span {
+		    padding: 7px;
+		    font-size: 12px;
+		    position: relative;   
+		    z-index: 2;
+		}
+		.divider-text:after {
+		    content: "";
+		    position: absolute;
+		    width: 100%;
+		    border-bottom: 1px solid #ddd;
+		    top: 55%;
+		    left: 0;
+		    z-index: 1;
+		}
+
+		.btn-facebook {
+		    background-color: #405D9D;
+		    color: #fff;
+		}
+		.btn-twitter {
+		    background-color: #42AEEC;
+		    color: #fff;
+		}
+
+		.d-none{
+			display: none;
+		}
+
+
+	</style>
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+
+</head>
+<body>
+	<!-- <section class="section-padding col-12" style="padding-top: 50px">
+		<div class="offset-sm-2 offset-1">
+			<div class="row">
+				<div class="col-6 registerForm">
+
+					<form  action="{% url 'register' %}" class="UserRegisterFrm" id="BikeFixUserRegisterFrm" data-parsley-validate="" novalidate="" method="POST">
+						<h3 class="text-center text-white mt-3">Register</h3>
+					    <div class="col-md-10 offset-md-1 col-12">
+					    	<div class="col-12 form-group mt-2">
+	                            <label>Full Name</label>
+	                            <input type="text" class="form-control" name="UserName" id="UserName" required autocomplete="off">
+	                        </div>
+	                        <div class="col-12 form-group mt-2">
+	                            <label>Mobile No</label>
+	                            <input type="text" data-parsley-type="number" class="form-control" name="UserMobile" required autocomplete="nope">
+	                        </div>
+	                        <div class="col-12 form-group mt-2">
+	                            <label>E-mail</label>
+	                            <input type="email" class="form-control" name="UserMail" autocomplete="nope">
+	                        </div>
+	                       
+	                        <div class="col-12 form-group mt-2">
+	                            <label>Date of Birth</label>
+	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
+	                        </div>
+
+	                        <div class="col-12 form-group mt-2">
+	                            <label>Age</label>
+	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
+	                        </div>
+
+	                        <div class="col-12 form-group mt-2">
+	                            <label>Passport Number</label>
+	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
+	                        </div>
+
+	                        <div class="col-12 form-group mt-2">
+	                        <label>Password</label>
+	                        <input type="Password" data-parsley-minlength="6" class="form-control" name="userPassword" id="userPassword" required>
+	                    </div>
+	                    <div class="col-12 form-group mt-2">
+	                        <label>Confirm Password</label>
+	                        <input type="Password" class="form-control" data-parsley-equalto="#userPassword" name="userconfirmPassword" required>
+	                    </div>
+	                    </div>
+	                    <div class="col-12 col-md-8 my-2 text-center">
+	                       <button type="submit" id="BikeFixUserRegister" class="col-md-5 col-6 btn btnAddVehicle offset-md-6">Register</button>
+	                    </div>
+	                    <div class="col-12 col-md-8 d-flex float-right mt-3">
+	                   		<span class="">Already have a Account ? <i class="UserSignInFrm">Sign In</i></span>
+	               		</div>
+		  			</form>
+
+					
+				</div>
+			</div>
+		</div>
+	</section>
+ -->
+
+
+ 	<div class="card bg-light">
+	<article class="card-body mx-auto" >
+		<h4 class="card-title mt-3 text-center">Maven AI</h4>
+		<p class="text-center">Account Login</p>
+		
+
+		<form action='{% url "register" %}' method="POST" enctype="multipart/form-data" class="UserRegisterForm d-none" data-parsley-validate>
+			
+			<div class="form-group input-group">
+				<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+				 </div>
+		        <input name="FullName" class="form-control" placeholder="Full name" type="text"  pattern="[A-Za-z .]+" required>
+		    </div> <!-- form-group// -->
+		    <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+				 </div>
+		        <input name="Email" class="form-control" placeholder="Email address" type="email" required>
+		    </div> <!-- form-group// -->
+		    <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+				</div>
+		    	<input name="Mobile" class="form-control" maxlength="10" placeholder="Phone number" data-parsley-type="number" pattern="[6-9]{1}[0-9]{9}" type="text" required>
+		    </div> <!-- form-group// -->
+
+		    <div class="form-group input-group">
+				<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-plane"></i> </span>
+				 </div>
+		        <input name="PassportNo" class="form-control" placeholder="Passport No" type="text" maxlength="8"  pattern="[A-Z0-9]+" required>
+		    </div>
+
+		    <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
+				</div>
+				
+		        <input class="form-control" name="DOB" data-date-format="dd/mm/yyyy" placeholder="Date of Birth" id="datepicker" required>
+
+			</div> <!-- form-group end.// -->
+
+			 <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+				</div>
+		    	<input name="Age" class="form-control" placeholder="Age" id="age"  type="number" readonly required>
+		    </div>
+
+		    <div class="form-group input-group">
+                <div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-file"></i> </span>
+				</div>
+                <input type="file" class="form-control" id="Image" name="Image" accept="image/*" required> 
+            </div>
+
+		    <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+				</div>
+		        <input class="form-control" name="Password" placeholder="Password" data-parsley-minlength="6" type="password" id="userPassword" required autocomplete="off">
+		    </div> <!-- form-group// -->
+		    <div class="form-group input-group">
+		    	<div class="input-group-prepend">
+				    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+				</div>
+		        <input class="form-control" placeholder="Repeat password" type="password" data-parsley-equalto="#userPassword" required>
+		    </div> <!-- form-group// -->                                      
+		    <div class="form-group">
+		        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+		    </div> <!-- form-group// -->      
+		    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+		</form>
+
+
+
+		<form action="" data-parsley-validate id="UserLoginForm">
+		
+				<div class="col-md-10 offset-md-1 col-12">
+		    	
+		    	<div class="form-group input-group">
+			    	<div class="input-group-prepend">
+					    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+					 </div>
+			        <input name="Username" class="form-control" placeholder="Email address" type="email" autocomplete="nope">
+			    </div>
+
+	             <div class="form-group input-group">
+			    	<div class="input-group-prepend">
+					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+					</div>
+			        <input name="Password" class="form-control" placeholder="Password" type="password" autocomplete="nope">
+			    </div>
+
+	        </div>
+	        <div class="col-12 row">
+	           <button type="submit" class="col-md-3 col-5 offset-md-5 offset-5 btn btnAddVehicle ">Login</button>
+	        </div> 
+	        <div class="col-12 col-md-12 text-center" style="margin-top: 10px;">
+	       		<span class="">Not have a Account ? <i class="UserSignUpFrm" style="cursor: pointer;">Register</i></span>
+	       	</div>
+
+		</form>
+
+
+		<p class="divider-text" style="margin-top: 36px;">
+	        <span class="bg-light">OR</span>
+	    </p>
+
+		<p>
+			<a href="{% provider_login_url "google" %}" class="btn btn-block btn-twitter"> <i class="fab fa-google"></i>   Login via Google</a>
+		</p>
+		
+
+
+
+	</article>
+	</div> <!-- card.// -->
+
+	</div> 
+	<!--container end.//-->
+
+
+
+
+	<!-- <button ><a href="{% provider_login_url "google" %}">Google Login</a></button> -->
+
+</body>
+
+
+
+  <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.3.4/parsley.min.js"></script>
+
+    <script type="text/javascript">
+    	
+    	$( ".UserSignUpFrm" ).click(function() {
+		  $('.UserRegisterForm').removeClass('d-none');
+          $('#UserLoginForm').addClass('d-none');
+		});
+
+	    $('#datepicker').datepicker("setDate", null);
+
+
+		$('#datepicker').datepicker({
+
+	        viewMode: "years",
+	        
+	        endDate: '-16y'
+	    }).on('changeDate', function () {
+            var age = getAge(this);
+           /* $('#age').val(age);*/
+            console.log(age);
+            // alert(age);
+            if (age < 16 || isNaN(age) ) {
+		        alert("The minimum age requirement is 16 years old");
+	    		// $('#datepicker').datepicker("setDate", new Date(this.value));
+
+		    }
+		    else{
+		    	$('#age').val(age);
+		    }
+		 
+
+        });
+
+
+
+
+	    function getAge(dateVal) {
+            
+
+            var today = new Date();
+            var birthDate = new Date(dateVal.value);
+		    var age = today.getFullYear() - birthDate.getFullYear();
+		    var m = today.getMonth() - birthDate.getMonth();
+		    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+		        age--;
+		    }
+		    return age;
+
+        }
+
+
+
+
+        
+
+        $("#UserLoginForm").submit(function(e) {
+
+	        //prevent Default functionality
+	        e.preventDefault();
+
+	        //get the action-url of the form
+	        var actionurl = '{% url "login" %}';
+	        var $inputs = $('#UserLoginForm :input');
+
+		    // not sure if you wanted this, but I thought I'd add it.
+		    // get an associative array of just the values.
+		    var values = {};
+		    $inputs.each(function() {
+		        values[this.name] = $(this).val();
+		    });
+
+		    // Define the string
+			var string = values.Username + ' :/: '+values.Password;
+
+			// Encode the String
+			var encodedString = btoa(string);
+			console.log(encodedString);
+
+
+	        //do your own request an handle the results
+	        $.ajax({
+	                url: actionurl,
+	                type: 'POST',
+	                data: {encoded_data : encodedString},
+	                success: function(data) {
+	                    console.log('success');
+	                    console.log(data);
+	                    if(data.status == 'success')
+	                    {
+	                    	// $.redirect("{% url 'login' %}", "GET", "_self");
+	                    	window.location.href="{% url 'login' %}";
+	                    }
+	                    else{
+	                    	alert(data.status);
+	                    }
+	                },
+	                error: function(jqXHR, textStatus, errorMessage) {
+				        console.log(errorMessage); // Optional
+				    }
+	        });
+
+	    });
+
+    </script>
+    
+</html>
