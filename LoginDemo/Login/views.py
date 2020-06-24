@@ -102,8 +102,10 @@ def login(request):
             message = message_bytes.decode('ascii')
             print(message)
 
-            UserName = message.split(':/:')[0]
-            Password = message.split(':/:')[1]
+            UserName = message.split(':/:')[0].strip()
+            Password = message.split(':/:')[1].strip()
+
+            print(UserName,Password)
 
             try:
             
@@ -245,5 +247,4 @@ def updatePassword(request):
         status = "User not found"
         traceback.print_exc()
 
-
-    return render(request,"dashboard.html",{'status':status})
+    return JsonResponse({"status":status},status=200)

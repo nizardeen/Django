@@ -81,41 +81,10 @@
 
 </head>
 <body>
-<!-- <p>{{request.session.user_mode}}</p> -->
-
-
-
-
 
 
 
 <div id="wrapper">
-    <!-- Navigation -->
-    <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
-        <!-- Brand and toggle get grouped for better mobile display -->
-      <!--   <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-           
-        </div>
-
-        Top Menu Items
-        <ul class="nav navbar-right top-nav">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down"></b></a>
-                <ul class="dropdown-menu" id='user-profile'>
-                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul> -->
-      
-    <!-- </nav> -->
 
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -169,30 +138,12 @@
 		                        
 		</table>
 
-
-		
-
-		
-
-
-		
-
-
     </div>
-
 
 
     <!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 
-
-
-
-
-
-<!-- <button type="button" class="btn btn-primary" >
-  Launch demo modal
-</button> -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -215,7 +166,7 @@
 					<div class="form-group input-group">
 			    	  	<div class="finput-group-prepend">
 			                <label>Old Password</label>
-			                <input type="Password" data-parsley-minlength="6" class="form-control" name="OldPassword" id="userNewPassword" required autocomplete="off">
+			                <input type="Password" data-parsley-minlength="6" class="form-control" name="OldPassword" id="OldPassword" required autocomplete="off">
 			            </div>
 			            <div class="input-group-prepend">
 			                <label>New Password</label>
@@ -223,7 +174,7 @@
 			            </div>
 			            <div class="input-group-prepend">
 			                <label>Re-type New Password</label>
-			                <input type="Password" class="form-control" data-parsley-equalto="#NewPassword" name="userNewconfirmPassword" id="userNewconfirmPassword" required autocomplete="off">
+			                <input type="Password" class="form-control" data-parsley-equalto="#NewPassword" name="onfirmPassword" id="confirmPassword" required autocomplete="off">
 			            </div>
 
 			            <div class="form-group col-6 col-md-6" style="margin-left: 20%;margin-top: 10px;">
@@ -237,12 +188,6 @@
        
       </div>
 
-
-
-     <!--  <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div>
   </div>
 </div>
@@ -261,13 +206,7 @@
 
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.js"></script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script> -->
-
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
@@ -286,30 +225,37 @@ crossorigin="anonymous"></script>
 	        var actionurl = '{% url "updatePassword" %}';
 	        console.log(actionurl);
 	        var form = $(this);
-	        //do your own request an handle the results
-	        $.ajax({
-	                url: actionurl,
-	                type: 'POST',
-	                data: form.serialize(),
-	                success: function(data) {
-	                    console.log('success');
-	                    console.log(data);
-	                    
-                    	      
-						if(data.status == "Password Reset Successfully")
-			            {
-			  			 	alert('{{ResetPwd}}' );
-			            }
-			            else{
-			            	alert("Old Password didn't match");
-			            }
 
-	                    
-	                },
-	                error: function(jqXHR, textStatus, errorMessage) {
-				        console.log(errorMessage); // Optional
-				    }
-	        });
+	        form.parsley().validate();
+
+            if (form.parsley().isValid()){
+                 //do your own request an handle the results
+		        $.ajax({
+		                url: actionurl,
+		                type: 'POST',
+		                data: form.serialize(),
+		                success: function(data) {
+		                    console.log('success');
+		                    console.log(data);
+		                    
+	                    	      
+							if(data.status == "Password Reset Successfully")
+				            {
+				  			 	alert(data.status);
+				  			 	$('#exampleModal').modal('toggle');
+				            }
+				            else{
+				            	alert("Old Password didn't match");
+				            }
+
+		                    
+		                },
+		                error: function(jqXHR, textStatus, errorMessage) {
+					        console.log(errorMessage); // Optional
+					    }
+		        });
+            }
+	       
 
 	    });
 

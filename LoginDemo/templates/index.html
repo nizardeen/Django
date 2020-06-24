@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Stock Form</title>
+	<title>Login Demo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Latest compiled and minified CSS -->
@@ -67,66 +67,7 @@
 
 </head>
 <body>
-	<!-- <section class="section-padding col-12" style="padding-top: 50px">
-		<div class="offset-sm-2 offset-1">
-			<div class="row">
-				<div class="col-6 registerForm">
-
-					<form  action="{% url 'register' %}" class="UserRegisterFrm" id="BikeFixUserRegisterFrm" data-parsley-validate="" novalidate="" method="POST">
-						<h3 class="text-center text-white mt-3">Register</h3>
-					    <div class="col-md-10 offset-md-1 col-12">
-					    	<div class="col-12 form-group mt-2">
-	                            <label>Full Name</label>
-	                            <input type="text" class="form-control" name="UserName" id="UserName" required autocomplete="off">
-	                        </div>
-	                        <div class="col-12 form-group mt-2">
-	                            <label>Mobile No</label>
-	                            <input type="text" data-parsley-type="number" class="form-control" name="UserMobile" required autocomplete="nope">
-	                        </div>
-	                        <div class="col-12 form-group mt-2">
-	                            <label>E-mail</label>
-	                            <input type="email" class="form-control" name="UserMail" autocomplete="nope">
-	                        </div>
-	                       
-	                        <div class="col-12 form-group mt-2">
-	                            <label>Date of Birth</label>
-	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
-	                        </div>
-
-	                        <div class="col-12 form-group mt-2">
-	                            <label>Age</label>
-	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
-	                        </div>
-
-	                        <div class="col-12 form-group mt-2">
-	                            <label>Passport Number</label>
-	                            <input type="text" class="form-control" name="UserCity" required autocomplete="nope">
-	                        </div>
-
-	                        <div class="col-12 form-group mt-2">
-	                        <label>Password</label>
-	                        <input type="Password" data-parsley-minlength="6" class="form-control" name="userPassword" id="userPassword" required>
-	                    </div>
-	                    <div class="col-12 form-group mt-2">
-	                        <label>Confirm Password</label>
-	                        <input type="Password" class="form-control" data-parsley-equalto="#userPassword" name="userconfirmPassword" required>
-	                    </div>
-	                    </div>
-	                    <div class="col-12 col-md-8 my-2 text-center">
-	                       <button type="submit" id="BikeFixUserRegister" class="col-md-5 col-6 btn btnAddVehicle offset-md-6">Register</button>
-	                    </div>
-	                    <div class="col-12 col-md-8 d-flex float-right mt-3">
-	                   		<span class="">Already have a Account ? <i class="UserSignInFrm">Sign In</i></span>
-	               		</div>
-		  			</form>
-
-					
-				</div>
-			</div>
-		</div>
-	</section>
- -->
-
+	
 
  	<div class="card bg-light">
 	<article class="card-body mx-auto" >
@@ -243,8 +184,6 @@
 		</p>
 		
 
-
-
 	</article>
 	</div> <!-- card.// -->
 
@@ -253,8 +192,6 @@
 
 
 
-
-	<!-- <button ><a href="{% provider_login_url "google" %}">Google Login</a></button> -->
 
 </body>
 
@@ -284,19 +221,17 @@
 	        endDate: '-16y'
 	    }).on('changeDate', function () {
             var age = getAge(this);
-           /* $('#age').val(age);*/
+           
             console.log(age);
-            // alert(age);
+            
             if (age < 16 || isNaN(age) ) {
 		        alert("The minimum age requirement is 16 years old");
-	    		// $('#datepicker').datepicker("setDate", new Date(this.value));
-
+	    	
 		    }
 		    else{
 		    	$('#age').val(age);
 		    }
 		 
-
         });
 
 
@@ -316,10 +251,6 @@
 
         }
 
-
-
-
-        
 
         $("#UserLoginForm").submit(function(e) {
 
@@ -355,7 +286,6 @@
 	                    console.log(data);
 	                    if(data.status == 'success')
 	                    {
-	                    	// $.redirect("{% url 'login' %}", "GET", "_self");
 	                    	window.location.href="{% url 'login' %}";
 	                    }
 	                    else{

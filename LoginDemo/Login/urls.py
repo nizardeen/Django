@@ -13,6 +13,4 @@ urlpatterns=[
 
     url(r'^register$',register,name="register"),
     url(r'^updatePassword$',updatePassword,name="updatePassword"),
-    # url(r'^Get_Model$',get_model,name="Get_Model"),
-
 ]
